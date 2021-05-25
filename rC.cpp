@@ -1,5 +1,4 @@
 #include "rInterpreter.h"
-#include "common_functions.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -7,6 +6,30 @@
 #include <fstream>
 using namespace std;
 #define out cout
+
+vector<string> read_file(string filename)
+{
+    vector<string> final;
+    try
+    {
+        string line;
+        ifstream cpfile(filename);
+        if (cpfile.is_open())
+        {
+            while (getline(cpfile, line))
+            {
+                final.push_back(line);
+            }
+            cpfile.close();
+        }
+    }
+    catch (const std::exception &e)
+    {
+        throw invalid_argument("Error, could not open " + filename);
+    }
+    return final;
+}
+
 int main(int argc, char* argv[]){
     vector<string> strNames;
     vector<string> strValues;
@@ -15,11 +38,12 @@ int main(int argc, char* argv[]){
         for (size_t i = 1; i < argc; i++)
         {
             code = read_file(argv[i]);
-            interpret(code, strNames, strValues);        
+            interpret(code, strNames, strValues);    
         }
     }else{
         try{
-
+            code = read_file("Main.rcpp");
+            interpret(code, strNames, strValues);
         }catch(const std::exception& e){
 
         }

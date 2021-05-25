@@ -1,4 +1,20 @@
+#todo - split is messed up
+
+#define basic syntax
 #variables;
 #basic functions
 #elements
 #includes
+#get range from to () like: split(split()) -> Write ("") -> !Write! ("") -> !(!!"!somethings!"!!)!
+syntax examples:
+
+function main(){
+    Write("Hello")
+    str x = "2"
+    if str:x=="2";{
+        Write("True")
+    }
+    str i = "i"
+    num k = 2
+
+}
