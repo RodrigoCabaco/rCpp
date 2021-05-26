@@ -7,12 +7,13 @@
 using namespace std;
 #define out cout
 
-int getIndexStr(vector<string> v, string K)
+unsigned int getIndexStr(vector<string> v, string K)
 {
     for (size_t i = 0; i < v.size(); i++)
     {
-        if(v[i]==K)
+        if (K==v[i]){
             return i;
+        }
     }
     return -1;
 }

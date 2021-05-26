@@ -72,8 +72,8 @@ vector<float> numberValues) {
 						}
 					}
 				}
-				int index = getIndexStr(numberNames, name);
-				if(index!=-1){
+				unsigned int index = getIndexStr(numberNames, name);
+				if(index==-1){
 					numberNames.push_back(name);
 					numberValues.push_back(parse_num(&str));
 				}else{
