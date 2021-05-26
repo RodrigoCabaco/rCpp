@@ -4,18 +4,19 @@
 #include <algorithm>
 using namespace std;
 
+
 //escape codes
 string escape_codes_typed [] = {"\\n","\\\""};
 string escape_codes [] = {"\n","\"" };
 
-void replaceAll(std::string& str, const std::string& from, const std::string& to) {
-    size_t start_pos = 0;
-    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
-        size_t end_pos = start_pos + from.length();
-        str.replace(start_pos, end_pos, to);
-        start_pos += to.length();
-    }
+string numStr_process(float num){
+    std::stringstream ss1;
+    ss1 << num;
+    std::string str1 = ss1.str();
+    return str1;
 }
+
+
 
 string pre_process(string *_line, vector<string> strNames,
 vector<string> strValues, 
@@ -31,13 +32,16 @@ vector<float> numberValues){
 		for (size_t i = 0; i < strNames.size(); i++)
 		{
 			if(line.find("$"+strNames[i]+"$")!=string::npos){
-				replaceAll(line, "$"+strNames[i]+"$", strValues[i]);
+				while(line.find("$"+strNames[i]+"$")!=string::npos){
+					line.replace(line.find("$"+strNames[i]+"$"), ("$"+strNames[i]+"$").size(), strValues[i]);
+				}
 			}	
 		}
 		for (size_t i = 0; i < numberNames.size(); i++)
 		{
 			if(line.find("$"+numberNames[i]+"$")!=string::npos){
-				replaceAll(line, "$"+numberNames[i]+"$", to_string(numberValues[i]));
+				while(line.find("$"+numberNames[i]+"$")!=string::npos){
+					line.replace(line.find("$"+numberNames[i]+"$"), ("$"+numberNames[i]+"$").size(), numStr_process(numberValues[i]));				}
 			}	
 		}
 	}

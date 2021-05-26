@@ -1,3 +1,4 @@
-str i = "helo";
-str f = "Hei$i$";
-Write ("$f$")
+num k = 2
+num f = 3
+num i = $f$$k$
+Write ("$i$")

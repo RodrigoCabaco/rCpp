@@ -60,7 +60,7 @@ vector<float> numberValues) {
 				strValues.push_back(value);
 				continue;
 			}else if (keyword=="num_declare"){
-				string name = get_tokens(get_tokens(line, "str ")[1], " ")[0];
+				string name = get_tokens(get_tokens(line, "num ")[1], " ")[0];
 				string unparsed_value = get_tokens(get_tokens(line, "num "+name)[1],"=")[1];
 				string str = unparsed_value;
 				str.erase(remove(str.begin(), str.end(), ' '), str.end());
