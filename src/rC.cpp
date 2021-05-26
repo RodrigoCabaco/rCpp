@@ -30,21 +30,23 @@ vector<string> read_file(string filename)
 }
 
 int main(int argc, char* argv[]){
+    //basic definitions
     vector<string> strNames;
     vector<string> strValues;
     vector<string> code;
     vector<string> numberNames;
     vector<float> numberValues;
+    string indent = "    ";
     if (argc >= 2) {
         for (size_t i = 1; i < argc; i++)
         {
             code = read_file(argv[i]);
-            interpret(code, strNames, strValues, numberNames, numberValues);    
+            interpret(code, strNames, strValues, numberNames, numberValues,indent);    
         }
     }else{
         try{
             code = read_file("Main.rcpp");
-            interpret(code, strNames, strValues, numberNames, numberValues);
+            interpret(code, strNames, strValues, numberNames, numberValues,indent);
         }catch(const std::exception& e){
         }
     }
