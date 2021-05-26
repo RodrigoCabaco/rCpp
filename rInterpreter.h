@@ -15,8 +15,8 @@ void interpret(vector<string> code,vector<string> strNames,vector<string> strVal
 		if (StartsWith(*ptr_line,"Write(")|| StartsWith(*ptr_line,"Write (")){
 			//Write ("")
 			if(StartsWith(line, "Write (\"")){
-				string to_out = list_split(list_split(line, "Write (\"")[1], "\")")[0];
-				cout << to_out;
+				string to_out = list_split(line, "Write (\"")[1];
+				//cout << to_out;
 			}else if(StartsWith(line, "Write(\"")){
 				string to_out = list_split(list_split(line, "Write(\"")[1], "\")")[0];
 				cout << to_out;
