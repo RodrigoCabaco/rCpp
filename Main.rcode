@@ -1,4 +1,0 @@
-# str i = "Hello"
-# WriteStr {i}
-
-Write ("Hello World!")
