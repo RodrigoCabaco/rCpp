@@ -1,2 +1,2 @@
-g++ rC.cpp
-sudo cp -r a.out /usr/bin/rC++
+g++ rC.cpp -o rC++
+sudo cp -r ./rC++ /usr/bin/rC++

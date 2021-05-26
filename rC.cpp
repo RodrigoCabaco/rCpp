@@ -44,7 +44,6 @@ int main(int argc, char* argv[]){
             code = read_file("Main.rcpp");
             interpret(code, strNames, strValues);
         }catch(const std::exception& e){
-
         }
     }
     return 0;

@@ -7,7 +7,6 @@
 using namespace std;
 #define out cout
 
-
 string remove_str_next(string str, string to_remove){
     return str.substr(str.find(to_remove)+to_remove.size(), str.size()-1);
 }
@@ -15,10 +14,12 @@ string remove_str_next(string str, string to_remove){
 string remove_str_first(string str, string to_remove){
     return str.substr(0, str.find(to_remove)+to_remove.size());
 }
-vector<string> split(string str, string delimiter){
+vector<string> get_tokens(string str, string delimiter){
     vector<string> final;
     if (str.find(delimiter)!=string::npos){
         final.push_back(str.substr(0,str.find(delimiter)));
+    }else{
+        final.push_back(str);
     }
     int current;
     while (str.find(delimiter) != string::npos) {
