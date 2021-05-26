@@ -11,7 +11,7 @@ syntax examples:
 function main(){
     Write("Hello")
     str x = "2"
-    if str:x=="2";{
+    if x=="2";{
         Write("True")
     }
     str i = "i"

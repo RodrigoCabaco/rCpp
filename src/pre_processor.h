@@ -8,6 +8,15 @@ using namespace std;
 string escape_codes_typed [] = {"\\n","\\\""};
 string escape_codes [] = {"\n","\"" };
 
+void replaceAll(std::string& str, const std::string& from, const std::string& to) {
+    size_t start_pos = 0;
+    while((start_pos = str.find(from, start_pos)) != std::string::npos) {
+        size_t end_pos = start_pos + from.length();
+        str.replace(start_pos, end_pos, to);
+        start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+    }
+}
+
 string pre_process(string *_line, vector<string> strNames,
 vector<string> strValues, 
 vector<string> numberNames, 
@@ -22,11 +31,15 @@ vector<float> numberValues){
 		for (size_t i = 0; i < strNames.size(); i++)
 		{
 			if(line.find("$"+strNames[i]+"$")!=string::npos){
-				while(line.find("$"+strNames[i]+"$")!=string::npos)
-					line.replace(line.find("$"+strNames[i]+"$"), strNames.size()+1, strValues[i]);
+				replaceAll(line, "$"+strNames[i]+"$", strValues[i]);
 			}	
 		}
-		
+		for (size_t i = 0; i < numberNames.size(); i++)
+		{
+			if(line.find("$"+numberNames[i]+"$")!=string::npos){
+				replaceAll(line, "$"+numberNames[i]+"$", to_string(numberValues[i]));
+			}	
+		}
 	}
 	
 	return line;
