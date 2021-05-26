@@ -6,25 +6,28 @@
 #include <cstring>
 using namespace std;
 #define out cout
-vector<string> list_split(string initial, string delimiter){
-    vector<string> tokens;
-    char str[initial.size()+1];
-    char _delimiter[delimiter.size()+1];
-    strcpy(str, initial.c_str());
-    strcpy(_delimiter, delimiter.c_str());
-    char *token = strtok(str, _delimiter);
-  
-    // Keep printing tokens while one of the
-    // delimiters present in str[].
-    while (token != NULL)
-    {
+string remove_str_next(string str, string to_remove){
+    return str.substr(str.find(to_remove)+to_remove.size(), str.size()-1);
+}
 
-       tokens.push_back(token);
-        token = strtok(NULL, _delimiter);
-
+string remove_str_first(string str, string to_remove){
+    return str.substr(0, str.find(to_remove)+to_remove.size());
+}
+vector<string> split(string str, string delimiter){
+    vector<string> final;
+    if (str.find(delimiter)!=string::npos){
+        final.push_back(str.substr(0,str.find(delimiter)+delimiter.size()));
     }
-    return tokens;
-  
+    int current;
+    while (str.find(delimiter) != string::npos) {
+        int pos = str.find(delimiter);
+        // 4
+        str = str.substr(pos+delimiter.size());
+        current++;
+        final.push_back(str);
+    } 
+    final.push_back("");
+    return final;
 }
 
 

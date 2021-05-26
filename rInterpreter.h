@@ -15,11 +15,11 @@ void interpret(vector<string> code,vector<string> strNames,vector<string> strVal
 		if (StartsWith(*ptr_line,"Write(")|| StartsWith(*ptr_line,"Write (")){
 			//Write ("")
 			if(StartsWith(line, "Write (\"")){
-				string to_out = list_split(line, "Write (\"")[1];
-				//cout << to_out;
-			}else if(StartsWith(line, "Write(\"")){
-				string to_out = list_split(list_split(line, "Write(\"")[1], "\")")[0];
+				string to_out = split(line, "Write ")[1];
 				cout << to_out;
+			}else if(StartsWith(line, "Write(\"")){
+			//ssss	string to_out = remove_str(remove_str(line, "Write(\""), "\")");
+				//cout << to_out;
 			}
 		}
 	}
