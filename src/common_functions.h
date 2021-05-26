@@ -7,17 +7,6 @@
 using namespace std;
 #define out cout
 
-unsigned int getIndexStr(vector<string> v, string K)
-{
-    for (size_t i = 0; i < v.size(); i++)
-    {
-        if (K==v[i]){
-            return i;
-        }
-    }
-    return -1;
-}
-
 string remove_str_next(string str, string to_remove){
     return str.substr(str.find(to_remove)+to_remove.size(), str.size()-1);
 }
@@ -35,7 +24,6 @@ vector<string> get_tokens(string str, string delimiter){
     int current;
     while (str.find(delimiter) != string::npos) {
         int pos = str.find(delimiter);
-        // 4
         str = str.substr(pos+delimiter.size());
         current++;
         final.push_back(str);
