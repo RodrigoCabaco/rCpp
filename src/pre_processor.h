@@ -13,7 +13,7 @@ void replaceAll(std::string& str, const std::string& from, const std::string& to
     while((start_pos = str.find(from, start_pos)) != std::string::npos) {
         size_t end_pos = start_pos + from.length();
         str.replace(start_pos, end_pos, to);
-        start_pos += to.length(); // In case 'to' contains 'from', like replacing 'x' with 'yx'
+        start_pos += to.length();
     }
 }
 
