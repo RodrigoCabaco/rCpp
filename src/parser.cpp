@@ -5,27 +5,35 @@
 using namespace std;
 
 vector<string> keywords= {
-"write",
-"write",
-"str_declare",
-"num_declare",
-"write_str",
-"write_num", "comment",
-"write_line", 
-"write_line",
+"write",//done
+"write",//done
+"str_declare",//done
+"num_declare",//done
+"write_str",//done
+"write_num",//done
+"comment",//done
+"write_line", //done
+"write_line", //done
 "++",
-"--"};
+"--",
+"for_loop",
+"}",
+"{"};
 vector<string> keywords_typed = {
-"Write ",
-"Write(", 
-"str ",
-"num ",
-"WriteStr",
-"WriteNum", "//",
-"WriteLine ",
-"WriteLine("
+"Write ",//done
+"Write(", //done
+"str ",//done
+"num ",//done
+"WriteStr",//done
+"WriteNum", //done
+"//",//done
+"WriteLine ",//done
+"WriteLine("//done
 , "++"
-, "--"};
+, "--",
+"for "
+,"}",
+"{"};
 
 string parse(string *ptr_line){
     string parsed = "";
