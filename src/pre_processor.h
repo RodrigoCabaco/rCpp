@@ -28,9 +28,15 @@ vector<float> numberValues){
 			line.replace(line.find(escape), escape.size(), escape_codes[escape_codes_typed->find(escape)]);
 		}
 	}
+	// if(StartsWith(line, "}")){
+	// 	line = remove_spaces(line);
+	// }
+	// if(StartsWith(line, "{")){
+	// 	line = remove_spaces(line);
+	// }
 	if (line.find("$")!=string::npos){
 		for (size_t i = 0; i < strNames.size(); i++)
-		{
+		{	
 			if(line.find("$"+strNames[i]+"$")!=string::npos){
 				while(line.find("$"+strNames[i]+"$")!=string::npos){
 					line.replace(line.find("$"+strNames[i]+"$"), ("$"+strNames[i]+"$").size(), strValues[i]);
@@ -41,7 +47,7 @@ vector<float> numberValues){
 		{
 			if(line.find("$"+numberNames[i]+"$")!=string::npos){
 				while(line.find("$"+numberNames[i]+"$")!=string::npos){
-					line.replace(line.find("$"+numberNames[i]+"$"), ("$"+numberNames[i]+"$").size(), numStr_process(numberValues[i]));				}
+					line.replace(line.find("$"+numberNames[i]+"$"), ("$"+numberNames[i]+"$").size(), numStr_process(numberValues[i]));}
 			}	
 		}
 	}
