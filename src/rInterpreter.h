@@ -33,6 +33,9 @@ void interpret(vector<string> code,vector<string> strNames,vector<string> strVal
 				string to_out = get_tokens(get_tokens(get_tokens(line, "Write")[1],"(\"")[1],"\")")[0];
 				cout << to_out;
 				continue;
+			}else if(keyword=="write_line"){
+				string to_out = get_tokens(get_tokens(get_tokens(line, "WriteLine")[1],"(\"")[1],"\")")[0];
+				cout << to_out<<endl;
 			}
 			else if (keyword == "str_declare"){
 				//str i = "123"
