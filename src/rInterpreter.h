@@ -64,8 +64,21 @@ vector<float> numberValues) {
 				string unparsed_value = get_tokens(get_tokens(line, "num "+name)[1],"=")[1];
 				string str = unparsed_value;
 				str.erase(remove(str.begin(), str.end(), ' '), str.end());
-				numberNames.push_back(name);
-				numberValues.push_back(parse_num(&str));
+				for (size_t i = 0; i < numberNames.size(); i++)
+				{
+					if (str.find(numberNames[i])!=string::npos){
+						while(str.find(numberNames[i])!=string::npos){
+							str.replace(str.find(numberNames[i]),numberNames[i].size(), numStr_process(numberValues[i]));
+						}
+					}
+				}
+				int index = getIndexStr(numberNames, name);
+				if(index!=-1){
+					numberNames.push_back(name);
+					numberValues.push_back(parse_num(&str));
+				}else{
+					numberValues[index] = parse_num(&str);
+				}
 			}
 		}catch(std::exception &e){
 			cout << "Error on line " << i+1 << " -> "<< code[i] << " <-\n";

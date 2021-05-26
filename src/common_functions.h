@@ -7,7 +7,15 @@
 using namespace std;
 #define out cout
 
-
+int getIndexStr(vector<string> v, string K)
+{
+    for (size_t i = 0; i < v.size(); i++)
+    {
+        if(v[i]==K)
+            return i;
+    }
+    return -1;
+}
 
 string remove_str_next(string str, string to_remove){
     return str.substr(str.find(to_remove)+to_remove.size(), str.size()-1);

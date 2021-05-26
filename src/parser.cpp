@@ -12,7 +12,9 @@ vector<string> keywords= {
 "write_str",
 "write_num", "comment",
 "write_line", 
-"write_line"};
+"write_line",
+"++",
+"--"};
 vector<string> keywords_typed = {
 "Write ",
 "Write(", 
@@ -21,7 +23,9 @@ vector<string> keywords_typed = {
 "WriteStr",
 "WriteNum", "//",
 "WriteLine ",
-"WriteLine("};
+"WriteLine("
+, "++"
+, "--"};
 
 string parse(string *ptr_line){
     string parsed = "";
