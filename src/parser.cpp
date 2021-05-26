@@ -4,8 +4,24 @@
 #include <algorithm>
 using namespace std;
 
-vector<string> keywords= {"write","write","str_declare","num_declare","write_str","write_num", "comment","write_line", "write_line"};
-vector<string> keywords_typed = {"Write ","Write(", "str ", "num ","WriteStr","WriteNum", "//", "WriteLine ", "WriteLine("};
+vector<string> keywords= {
+"write",
+"write",
+"str_declare",
+"num_declare",
+"write_str",
+"write_num", "comment",
+"write_line", 
+"write_line"};
+vector<string> keywords_typed = {
+"Write ",
+"Write(", 
+"str ",
+"num ",
+"WriteStr",
+"WriteNum", "//",
+"WriteLine ",
+"WriteLine("};
 
 string parse(string *ptr_line){
     string parsed = "";

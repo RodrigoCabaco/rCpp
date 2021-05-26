@@ -7,6 +7,7 @@
 using namespace std;
 #define out cout
 
+
 string remove_str_next(string str, string to_remove){
     return str.substr(str.find(to_remove)+to_remove.size(), str.size()-1);
 }
