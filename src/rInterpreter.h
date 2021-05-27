@@ -244,8 +244,26 @@ vector<vector<string>> function_content) {
 				}else{
 					type_error("function_declare", "function \""+name+"\" declared more than once");
 				}
-
 			}
+			for (size_t i = 0; i < function_names.size(); i++)
+			{
+				if (StartsWith(line, function_names[i]+"(")||StartsWith(line, function_names[i]+" (")){
+					string compile_first_str = get_tokens(get_tokens(line, "(")[1], ")")[0];
+					string to_parse = compile_first_str;
+					char* _to_parse = new char[to_parse.size()+1];
+					strcpy(_to_parse, to_parse.c_str());
+					char *token = strtok(_to_parse, ";;"); 
+					vector<string> parsed;
+					while (token != NULL) 
+					{ 
+						parsed.push_back(token);
+						token = strtok(NULL, ";;"); 
+					}
+					interpret(parsed, strNames, strValues, numberNames, numberValues, indent, function_names, function_content);
+					interpret(function_content[i], strNames, strValues, numberNames, numberValues, indent, function_names, function_content);
+				}
+			}
+			
 			
 		}catch(std::exception &e){
 			cout << "Error on line " << i+1 << " -> "<< code[i] << " <-\n";
