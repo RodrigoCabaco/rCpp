@@ -18,7 +18,8 @@ vector<string> keywords= {
 "--",
 "for_loop",
 "}",
-"{"};
+"{",
+"function_declare"};
 vector<string> keywords_typed = {
 "Write ",//done
 "Write(", //done
@@ -33,7 +34,8 @@ vector<string> keywords_typed = {
 , "--",
 "for "
 ,"}",
-"{"};
+"{",
+"function "};
 
 string parse(string *ptr_line){
     string parsed = "";

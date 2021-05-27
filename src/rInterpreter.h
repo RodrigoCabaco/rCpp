@@ -33,8 +33,6 @@ string remove_spaces(string _str){
 	return str;
 }
 
-
-
 // parser.parse returns a keyword which is then further processed
 // Keywords: Write, str_declare, num_declare, WriteStr, WriteNum, for_loop, if_statement, while_loop, etc.
 void interpret(
@@ -43,9 +41,10 @@ vector<string> strNames,
 vector<string> strValues, 
 vector<string> numberNames, 
 vector<float> numberValues,
-string indent) {
+string indent,
+vector<string> function_names,
+vector<vector<string>> function_content) {
 
-	
 	//store variables
 	for (size_t i = 0; i < code.size(); i++)
 	{
@@ -217,7 +216,7 @@ string indent) {
 					for (size_t __i = 0; __i < range; __i++)
 					{
 						numberValues[getIndexStr(numberNames, _iterator)] = __i;
-						interpret(to_compile, strNames, strValues, numberNames, numberValues,indent);
+						interpret(to_compile, strNames, strValues, numberNames, numberValues,indent, function_names, function_content);
 					}
 	
 
@@ -225,7 +224,29 @@ string indent) {
 					type_error("for_loop", "Wrong syntax, correct -> for i in range:x;");
 				}
 				
+			}else if(keyword=="function_declare"){
+				//function main(){
+
+				//}
+				string name = get_tokens(get_tokens(line, "function ")[1],"(")[0];
+				vector<string> to_compile_ = {code.begin()+i+1, code.end()};
+				vector<string> to_compile = {to_compile_.begin(), to_compile_.begin()+(getIndexStr(to_compile_, "}"))};
+				for (size_t _i = 0; _i < to_compile.size(); _i++)
+				{
+					string _line = to_compile[_i];
+					if (StartsWith(_line, indent)){
+						to_compile[_i] = get_tokens(_line, indent)[1]; 
+					}
+				}
+				if(getIndexStr(function_names, name)==-1){
+					function_names.push_back(name);
+					function_content.push_back(to_compile);
+				}else{
+					type_error("function_declare", "function \""+name+"\" declared more than once");
+				}
+
 			}
+			
 		}catch(std::exception &e){
 			cout << "Error on line " << i+1 << " -> "<< code[i] << " <-\n";
 			exit(1);

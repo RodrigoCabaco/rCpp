@@ -36,17 +36,19 @@ int main(int argc, char* argv[]){
     vector<string> code;
     vector<string> numberNames;
     vector<float> numberValues;
+    vector<string> function_names;
+    vector<vector<string>> function_content;
     string indent = "    ";
     if (argc >= 2) {
         for (size_t i = 1; i < argc; i++)
         {
             code = read_file(argv[i]);
-            interpret(code, strNames, strValues, numberNames, numberValues,indent);    
+            interpret(code, strNames, strValues, numberNames, numberValues,indent, function_names, function_content);   
         }
     }else{
         try{
             code = read_file("Main.rcpp");
-            interpret(code, strNames, strValues, numberNames, numberValues,indent);
+            interpret(code, strNames, strValues, numberNames, numberValues,indent, function_names, function_content);
         }catch(const std::exception& e){
         }
     }

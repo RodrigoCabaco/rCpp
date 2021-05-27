@@ -5,5 +5,5 @@
 using namespace std;
 
 void type_error(string causer, string explanation){
-    cout << "Type Error: " << causer <<" : \""<< explanation<<"\""<<endl;
+    cout << "Type Error: " << causer <<" -> \""<< explanation<<"\""<<endl;
 }

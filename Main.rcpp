@@ -1,3 +1,6 @@
-num k = 2
-num f = 3
-Write ("$i$")
+function k(){
+    Write ("Hello")
+}
+function k(){
+    Write ("Hello")
+}
