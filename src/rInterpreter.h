@@ -53,7 +53,16 @@ vector<vector<string>> function_content) {
 			string *ptr_line = &code[i];
 			string line = *ptr_line;
 			//Basic Write Method: Write("Something")
-			string keyword = parse(&line);
+			vector<string> exceptions;
+			for (string str_value:strNames){
+				exceptions.push_back(str_value);
+			}for (string function__name:function_names){
+				exceptions.push_back(function__name);
+			}
+			for (string num_name:numberNames){
+				exceptions.push_back(num_name);
+			}
+			string keyword = parse(&line, exceptions);
 			//Write
 			line = pre_process(&line, strNames, strValues, numberNames, numberValues);
 			if (keyword == "write"){
@@ -252,12 +261,12 @@ vector<vector<string>> function_content) {
 					string to_parse = compile_first_str;
 					char* _to_parse = new char[to_parse.size()+1];
 					strcpy(_to_parse, to_parse.c_str());
-					char *token = strtok(_to_parse, ";;"); 
+					char *token = strtok(_to_parse, ";"); 
 					vector<string> parsed;
 					while (token != NULL) 
 					{ 
 						parsed.push_back(token);
-						token = strtok(NULL, ";;"); 
+						token = strtok(NULL, ";"); 
 					}
 					interpret(parsed, strNames, strValues, numberNames, numberValues, indent, function_names, function_content);
 					interpret(function_content[i], strNames, strValues, numberNames, numberValues, indent, function_names, function_content);

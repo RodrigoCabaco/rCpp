@@ -1,3 +1,5 @@
-for k in range:50000;{
-    Write ("Hello")
+function k(){
+    Write ("Hi")
 }
+
+k()

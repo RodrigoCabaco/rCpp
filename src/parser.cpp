@@ -37,7 +37,13 @@ vector<string> keywords_typed = {
 "{",
 "function "};
 
-string parse(string *ptr_line){
+string parse(string *ptr_line, vector<string> exceptions){
+    for (size_t i = 0; i < exceptions.size(); i++)
+    {
+        keywords_typed.push_back(exceptions[i]);
+        keywords.push_back(exceptions[i]);
+    }
+    
     string parsed = "";
     string np_line = *ptr_line;
     int f = 0;
@@ -49,7 +55,16 @@ string parse(string *ptr_line){
         }
     }
     if (parsed==""&&np_line!=""&&StartsWith(np_line, " ")==false&&StartsWith(np_line, "\n")==false){
-        cout << "Unknown token \""<<get_tokens(np_line, " ")[0] <<"\"\n";
+        bool is_exception = false;
+        for (size_t i = 0; i < exceptions.size(); i++)
+        {
+            if(StartsWith(np_line, exceptions[i])){
+                is_exception = true;
+            }
+        }
+        if(is_exception==false){
+            cout << "Unknown token \""<<get_tokens(np_line, " ")[0] <<"\"\n";
+        }
         exit(1);
     }
         
