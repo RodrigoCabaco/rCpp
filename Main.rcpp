@@ -1,5 +1,8 @@
-function k(){
-    Write ("Hi")
+function k(str i){
+    str f = "Hello"
 }
 
-k()
+for k in range:100;{
+    str f = "hi"
+}
+Write ("$f$")

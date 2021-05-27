@@ -37,14 +37,19 @@ string remove_spaces(string _str){
 // Keywords: Write, str_declare, num_declare, WriteStr, WriteNum, for_loop, if_statement, while_loop, etc.
 void interpret(
 vector<string> code,
-vector<string> strNames,
-vector<string> strValues, 
-vector<string> numberNames, 
-vector<float> numberValues,
+vector<string>* _strNames,
+vector<string>* _strValues, 
+vector<string>* _numberNames, 
+vector<float>* _numberValues,
 string indent,
-vector<string> function_names,
-vector<vector<string>> function_content) {
-
+vector<string>* _function_names,
+vector<vector<string>>* _function_content) {
+	vector<string> strNames = *_strNames;
+	vector<string> strValues = *_strValues;
+	vector<string> numberNames = *_numberNames;
+	vector<float> numberValues = *_numberValues;
+	vector<string> function_names = *_function_names;
+	vector<vector<string>> function_content = *_function_content;
 	//store variables
 	for (size_t i = 0; i < code.size(); i++)
 	{
@@ -225,10 +230,8 @@ vector<vector<string>> function_content) {
 					for (size_t __i = 0; __i < range; __i++)
 					{
 						numberValues[getIndexStr(numberNames, _iterator)] = __i;
-						interpret(to_compile, strNames, strValues, numberNames, numberValues,indent, function_names, function_content);
+						interpret(to_compile, &strNames, &strValues, &numberNames, &numberValues,indent, &function_names, &function_content);
 					}
-	
-
 				}else{
 					type_error("for_loop", "Wrong syntax, correct -> for i in range:x;");
 				}
@@ -268,12 +271,24 @@ vector<vector<string>> function_content) {
 						parsed.push_back(token);
 						token = strtok(NULL, ";"); 
 					}
-					interpret(parsed, strNames, strValues, numberNames, numberValues, indent, function_names, function_content);
-					interpret(function_content[i], strNames, strValues, numberNames, numberValues, indent, function_names, function_content);
+					for(auto func_line:function_content[i])
+						parsed.push_back(func_line);
+
+					vector<string> next_compile_list = {code.begin()+i+1, code.end()};
+					for(string next_compile:next_compile_list){
+						parsed.push_back(next_compile);
+					}
+					interpret(parsed,&strNames, &strValues, &numberNames, &numberValues,indent, &function_names, &function_content);
+					return;
 				}
 			}
 			
-			
+			*_strValues = strValues;
+			*_strNames = strNames;
+			*_numberNames = numberNames;
+			*_numberValues = numberValues;
+			*_function_content = function_content;
+			*_function_names = function_names;
 		}catch(std::exception &e){
 			cout << "Error on line " << i+1 << " -> "<< code[i] << " <-\n";
 			exit(1);

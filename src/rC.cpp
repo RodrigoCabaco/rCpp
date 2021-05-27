@@ -43,12 +43,12 @@ int main(int argc, char* argv[]){
         for (size_t i = 1; i < argc; i++)
         {
             code = read_file(argv[i]);
-            interpret(code, strNames, strValues, numberNames, numberValues,indent, function_names, function_content);   
+            interpret(code, &strNames, &strValues, &numberNames, &numberValues,indent, &function_names, &function_content);
         }
     }else{
         try{
             code = read_file("Main.rcpp");
-            interpret(code, strNames, strValues, numberNames, numberValues,indent, function_names, function_content);
+            interpret(code, &strNames, &strValues, &numberNames, &numberValues,indent, &function_names, &function_content);
         }catch(const std::exception& e){
         }
     }
